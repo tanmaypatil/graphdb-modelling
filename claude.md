@@ -29,3 +29,5 @@ Each model will have its own csv.
   password : password
   db name : leaves
 
+## Cypher queries 
+  To be stored in cypher folder.
