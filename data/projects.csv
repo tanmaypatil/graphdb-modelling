@@ -1,0 +1,6 @@
+project_id,project_name,project_description,project_status
+P1,NACHA,Development of NACHA payment system,Active
+P2,Tech stack upgrade,Upgrading the existing technology stack,Active
+P3,Implementation of P2G upgrade,Upgrading the P2G systems to latest version,Active
+P4,BP HRMS,Implementation of HRMS for Payments,Active
+P5,Marketing Campaign Q3,Marketing campaign for Q3 2024,Planned
