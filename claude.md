@@ -30,4 +30,13 @@ Each model will have its own csv.
   db name : leaves
 
 ## Cypher queries 
-  To be stored in cypher folder.
+  ### storing queries
+  All the queries to be stored in cypher folder.
+  Further sub folders need to be used.
+  * insert - Folder  would be store queries to load from csv and insert into db
+  * queries - Folder would be store queries to test model
+
+  ### General instructions 
+  * use merge so that duplicate nodes are not created 
+  
+  
