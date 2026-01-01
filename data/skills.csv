@@ -1,0 +1,21 @@
+id,name,category,description
+S1,Java,Programming Language,Object-oriented programming language
+S2,Python,Programming Language,High-level general-purpose programming language
+S3,JavaScript,Programming Language,Web programming language
+S4,SQL,Database,Structured Query Language for databases
+S5,Neo4j,Database,Graph database management
+S6,Spring Boot,Framework,Java application framework
+S7,React,Framework,JavaScript UI library
+S8,Docker,DevOps,Containerization platform
+S9,AWS,Cloud,Amazon Web Services cloud platform
+S10,Git,Version Control,Distributed version control system
+S11,Digital Marketing,Marketing,Online marketing strategies
+S12,Content Strategy,Marketing,Content planning and creation
+S13,SEO,Marketing,Search Engine Optimization
+S14,Social Media Marketing,Marketing,Social platform marketing
+S15,Recruitment,HR,Talent acquisition and hiring
+S16,Employee Relations,HR,Workplace relationship management
+S17,HRMS Software,HR,Human Resource Management Systems
+S18,Communication,Soft Skill,Effective verbal and written communication
+S19,Leadership,Soft Skill,Team leadership and management
+S20,Problem Solving,Soft Skill,Analytical and creative problem solving

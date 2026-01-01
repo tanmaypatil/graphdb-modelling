@@ -1,5 +1,5 @@
 // ============================================================
-// Complete setup script for Employee, Role, Project, and Leaves Management
+// Complete setup script for Employee, Role, Project, Leaves, and Skills Management
 // Run this in Neo4j Browser (http://localhost:7474)
 // Make sure CSV files are in the import directory first
 // ============================================================
@@ -54,7 +54,26 @@ MATCH (e:Employee {id: row.employee_id})
 MERGE (e)-[:TAKE_LEAVE]->(l);
 
 // ============================================================
-// STEP 6: Verify the data loaded correctly
+// STEP 6: Load Skills
+// ============================================================
+LOAD CSV WITH HEADERS FROM 'file:///skills.csv' AS row
+MERGE (s:Skill {id: row.id})
+SET s.name = row.name,
+    s.category = row.category,
+    s.description = row.description;
+
+// ============================================================
+// STEP 7: Load Employee-Skill relationships (HAS_SKILL)
+// ============================================================
+LOAD CSV WITH HEADERS FROM 'file:///employee_skills.csv' AS row
+MATCH (e:Employee {id: row.employee_id})
+MATCH (s:Skill {id: row.skill_id})
+MERGE (e)-[r:HAS_SKILL]->(s)
+SET r.proficiency_level = row.proficiency_level,
+    r.years_of_experience = toInteger(row.years_of_experience);
+
+// ============================================================
+// STEP 8: Verify the data loaded correctly
 // ============================================================
 
 // Count all nodes
@@ -63,8 +82,25 @@ MATCH (n) RETURN labels(n)[0] AS NodeType, count(n) AS Count;
 // Count all relationships
 MATCH ()-[r]->() RETURN type(r) AS RelationshipType, count(r) AS Count;
 
-// View sample data with projects
+// View sample data with projects and skills
 MATCH (e:Employee)-[:HAS_ROLE]->(r:Role)
 OPTIONAL MATCH (e)-[:WORKS_ON]->(p:Project)
-RETURN e.name AS Employee, r.name AS Role, p.project_name AS Project
+OPTIONAL MATCH (e)-[hs:HAS_SKILL]->(s:Skill)
+RETURN e.name AS Employee,
+       r.name AS Role,
+       p.project_name AS Project,
+       count(s) AS SkillCount
 LIMIT 5;
+
+// Show skills by category
+MATCH (s:Skill)
+RETURN s.category AS Category, collect(s.name) AS Skills, count(s) AS Count
+ORDER BY s.category;
+
+// Show employees with their skill counts
+MATCH (e:Employee)
+OPTIONAL MATCH (e)-[:HAS_SKILL]->(s:Skill)
+RETURN e.name AS Employee,
+       e.department AS Department,
+       count(s) AS TotalSkills
+ORDER BY TotalSkills DESC;
