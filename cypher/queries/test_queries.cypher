@@ -193,7 +193,8 @@ WITH p, collect(DISTINCT s.id) AS project_skills
 // Then find skills not in the project
 MATCH (all_skills:Skill)
 WHERE NOT all_skills.id IN project_skills
-RETURN all_skills.name AS missing_skill,
+RETURN p.project_name AS project_name,
+       all_skills.name AS missing_skill,
        all_skills.category AS category,
        all_skills.description AS description
 ORDER BY all_skills.category, all_skills.name;
